@@ -44,6 +44,7 @@ describe(Stylist) do
       test_stylist = Stylist.new({:id => nil, :name => "bowl"})
       test_stylist.save()
       test_stylist.update({:name => "Ben"})
-      expect(test_stylist.name())to(eq("Ben"))
+      expect(test_stylist.name()).to(eq("Ben"))
+    end
   end
 end

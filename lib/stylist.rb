@@ -27,6 +27,11 @@ class Stylist
     self.name() == other.name() && self.id() == other.id()
   end
 
+define_method(:update) do |attributes|
+  @name = attributes.fetch(:name)
+  @id = self.id()
+  DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id= #{@id};")
+end
 
 
 end
