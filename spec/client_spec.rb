@@ -1,0 +1,35 @@
+require('spec_helper')
+
+describe(Client) do
+
+  describe('#save') do
+    it('will save the newly created object in the table') do
+      test_client = Client.new({:name => 'Getro', :stylist_id => 1})
+      test_client.save()
+      expect(Client.all()).to(eq([test_client]))
+    end
+  end
+
+  describe('#name') do
+    it('will return the name of the client') do
+      test_client = Client.new({:name => "bosh", :stylist_id => 1 })
+      expect(test_client.name()).to(eq("bosh"))
+    end
+  end
+
+  describe('.all') do
+    it('will return an empty array') do
+      expect(Client.all()).to(eq([]))
+    end
+  end
+
+  describe('#==') do
+    it('it is the same client if it has the same name and stylist_id') do
+      test_client = Client.new({:name => "bosh", :stylist_id => 1})
+      test_client2 = Client.new({:name => "bosh", :stylist_id => 1})
+      expect(test_client).to(eq(test_client2))
+    end
+  end
+
+
+end
