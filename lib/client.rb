@@ -26,4 +26,8 @@ class Client
     self.name() == other_object.name() && self.stylist_id() == other_object.stylist_id()
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM clients WHERE id = #{}")
+  end
+
 end
