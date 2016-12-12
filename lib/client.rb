@@ -1,8 +1,9 @@
 class Client
 
-  attr_reader(:name, :stylist_id)
+  attr_reader(:id, :name, :stylist_id)
 
   define_method(:initialize) do |attributes|
+    @id = attributes.fetch(:id)
     @name = attributes.fetch(:name)
     @stylist_id = attributes.fetch(:stylist_id)
   end
@@ -12,14 +13,16 @@ class Client
     clientele =[]
     returned_clients.each do |client|
       name = client.fetch('name')
-      stylist_id = client.fetch('id').to_i
-      clientele.push(Client.new(:name => name, :stylist_id => stylist_id))
+      stylist_id = client.fetch('stylist_id').to_i
+      id = client.fetch('id').to_i
+      clientele.push(Client.new({:id => id, :name => name, :stylist_id => stylist_id}))
     end
     clientele
   end
 
   define_method(:save) do
-    result = DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{@stylist_id});")
+    result = DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{@stylist_id}) RETURNING id;")
+    @id = result.first().fetch('id').to_i
   end
 
   define_method(:==) do |other_object|
@@ -27,7 +30,7 @@ class Client
   end
 
   define_method(:delete) do
-    DB.exec("DELETE FROM clients WHERE id = #{}")
+    DB.exec("DELETE FROM clients WHERE id = '#{self.id()}';")
   end
 
 end

@@ -1,0 +1,9 @@
+h1 {
+  text-align: center;
+  font-style: italic;
+}
+
+#righto {
+  float: right;
+  background-color: lightblue;
+}
