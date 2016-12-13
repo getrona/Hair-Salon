@@ -1,34 +1,35 @@
+<hr>
+<hr>
 <div class="jumbotron">
   <h1>Hair Cuttery Management System</h1>
 </div>
-
+<hr>
+<hr>
 
   <div class="row">
     <div class="col-md-6">
       <h1>Stylists</h1>
       <div class="col-md-3">
         <h3><p> I want to: </p></h3>
-        <p><a href="/">View Stylists</a></p>
+        <p><a href="/">View Stylist</a></p>
         <br>
         <p><a href="/new/stylist">Add Stylists</a></p>
         <br>
-        <p><a href="#">Update Stylists</a></p>
-        <br>
-        <p><a href="#">Delete Stylists</a></p>
       </div>
 
       <div class="col-md-3" id="righto">
-        <% if !(@all_stylists.nil?) %>
-          <p> List is Empty.</p>
-        <% else %>
-        <br>
-        <p>The Current List</p>
+        <% if @all_stylists.any?() %>
+        <p>The Current List:</p>
         <ul>
           <% @all_stylists.each() do |stylist| %>
-          <li><a href="#"> <%= stylist.name() %></a></li>
+          <li><a href="/stylist/<%=stylist.id()%>"> <%= stylist.name() %></a></li>
           <% end %>
         </ul>
-        <%end %>
+
+        <% else %>
+        <p> List is Empty.</p>
+        <br>
+        <% end %>
       </div>
     </div>
 
@@ -40,37 +41,49 @@
         <br>
         <p><a href="/new/client">Add Clients</a></p>
         <br>
-        <p><a href="#">Update Clients</a></p>
-        <br>
-        <p><a href="#">Delete Clients</a></p>
       </div>
       <div class="col-md-3" id="righto">
-        <% if !(@all_clients.nil?) %>
-          <p>List is Empty.</p>
-        <% else %>
-        <br>
-        <p>The Current List</p>
+        <% if @all_clients.any?() %>
+        <h5>The Current List:</h5>
         <ul>
           <% @all_clients.each() do |client| %>
-          <li><a href="#"> <%= client.name() %></a></li>
+          <li><a href="/client/<%= client.id()%>"> <%= client.name() %></a></li>
           <% end %>
         </ul>
+        <% else %>
+        <h5>List is Empty.</h5>
+        <br>
         <% end %>
       </div>
     </div>
   </div>
 
 
+  <hr>
+  <br>
+  <br>
 
-  <br>
-  <br>
-  <br>
-  <br>
   <div class="row">
     <div class="col-md-12">
-      <h1>Assign Clients to a Stylist</h1>
-      <p>
-        t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-      </p>
+      <div class="container-fluid" id="right">
+        <h3>Assign a Client to a Stylist</h3>
+
+        <form action="/" method="post">
+        <label for="stylist_id">Select a Stylist</label>
+        <select id="stylist_id" name="stylist_id" type="text">
+          <% @all_stylists.each() do |stylist| %>
+            <option value="<%= stylist.id()%>"> <%= stylist.name()%></option>
+          <% end %>
+        </select>
+
+        <label for="client">Name of Client:</label>
+        <input id="client_input" type="text" name="client_input">
+        <button type="submit" name="btn btn-primary">Add Client</button>
+        </form>
+      </div>
+
     </div>
   </div>
+  <br>
+  <br>
+  <hr>

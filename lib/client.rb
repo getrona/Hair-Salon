@@ -33,4 +33,8 @@ class Client
     DB.exec("DELETE FROM clients WHERE id = '#{self.id()}';")
   end
 
+  define_method(:update) do
+    DB.exec("UPDATE clients SET")
+  end
+
 end

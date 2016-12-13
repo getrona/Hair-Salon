@@ -17,7 +17,7 @@ get('/new/stylist') do
   erb(:stylist_form)
 end
 
-post('/create_stylist') do
+post('/stylist') do
   name = params.fetch('style_input')
   Stylist.new({:id => nil, :name => name}).save()
   @all_stylists = Stylist.all()
@@ -29,7 +29,7 @@ get('/new/client') do
   erb(:client_form)
 end
 
-post('/create_client') do
+post('/client') do
   name = params.fetch('client_input')
   Client.new({:id => nil, :name => name, :stylist_id => nil}).save()
   @all_stylists = Stylist.all()
