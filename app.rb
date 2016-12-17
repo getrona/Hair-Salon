@@ -32,10 +32,17 @@ end
 #
 # end
 
-# get('/stylist/:id/edit') do
+# get('/stylist/:id') do
 #   @stylist = Stylist.find(params.fetch("id").to_i())
-#   erb(:stylist_edit)
+#   erb(:stylist)
 # end
+
+patch('/stylist/:id') do
+  name = params.fetch('name')
+  @stylist = Stylist.find(params.fetch("id").to_i())
+  @stylist.update({:name => name})
+  redirect "/stylist/#{@stylist.id()}"
+end
 
 post('/clients') do
   name = params.fetch('client_input')

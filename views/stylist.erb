@@ -35,14 +35,17 @@
 <br>
 
 
+
+
+<form action="/stylist/<%=@stylist.id()%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="name">Rename your Stylist:</label>
+  <input id="name" type="text" name="name">
+  <button type="submit" class="btn">Update</button>
+</form>
+
 <form action="/stylist/<%=@stylist.id()%>" method="post">
   <input type="hidden" name="_method" value="delete">
   <button type="submit">Delete Stylist</button>
 </form>
-
-<form class="" action="index.html" method="post">
-  <input type="button" name="name" value="">
-  <label for=""></label>
-  <button type="button" name="button"></button>
-</form>
-<a href="/">Home</a>
+<button type="sumit" class="btn"><a href="/">Home</a></button>
