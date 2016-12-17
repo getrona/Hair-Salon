@@ -1,8 +1,10 @@
-<h1>New Stylist Form</h1>
+<h1>Add Stylist Form</h1>
 
 <form action="/stylist" method="post">
-  <label for="style_input">Full Name of New Stylist</label>
-  <input id="style_input" type="text" name="style_input" placeholder="Enter Full Name">
+  <div class="form-group">
+    <label class="form-label" for="name">Add a Stylist</label>
+    <input class="form-control" id="name" type="text" name="name" placeholder="Enter Name Here">
+    <button type="submit" class="button btn">Submit!</button>
+  </div>
 
-  <button type="submit" class="btn">Submit!</button>
 </form>

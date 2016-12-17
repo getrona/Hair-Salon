@@ -1,0 +1,48 @@
+<h1> <%= @stylist.name()%></h1>
+<div class="">
+  <div class="col-md-3" id="righto">
+    <% if @stylist.clients.any?() %>
+    <h5>The List of Clients that are assigned to <%= @stylist.name()%> :</h5>
+    <ul>
+      <% @stylist.clients().each() do |client| %>
+      <li><%= client.name() %></a></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <h5>There are no clients assigned to this Stylist yet.</h5>
+    <br>
+    <% end %>
+  </div>
+</div><br>
+<br>
+<br>
+<br>
+<br>
+
+
+<br>
+<div class="form-group">
+  <form action="/clients" method="post">
+    <input id="stylist_id" type="hidden" name="stylist_id" value="<%=@stylist.id()%>">
+
+    <label for="client_input">Full Name of New Client</label>
+    <input id="client_input" type="text" name="client_input" placeholder="Enter Full Name">
+
+    <button type="submit" class="btn">Submit!</button>
+  </form>
+</div>
+
+<br>
+
+
+<form action="/stylist/<%=@stylist.id()%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">Delete Stylist</button>
+</form>
+
+<form class="" action="index.html" method="post">
+  <input type="button" name="name" value="">
+  <label for=""></label>
+  <button type="button" name="button"></button>
+</form>
+<a href="/">Home</a>

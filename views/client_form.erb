@@ -1,7 +1,7 @@
 <h1>New Client Form</h1>
 
 <form action="/client" method="post">
-  <input id="stylist_id" type="hidden" name="stylist_id" value="<%=@client.id()%>">
+  <input id="stylist_id" type="hidden" name="stylist_id" value="<%=@stylist.id()%>">
 
   <label for="client_input">Full Name of New Client</label>
   <input id="client_input" type="text" name="client_input" placeholder="Enter Full Name">

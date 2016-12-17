@@ -27,6 +27,16 @@ class Stylist
     self.name() == other.name() && self.id() == other.id()
   end
 
+  define_singleton_method(:find) do |id|
+    found_stylist = nil
+    Stylist.all().each() do |stylist|
+      if stylist.id().to_i() == id.to_i()
+        found_stylist = stylist
+      end
+    end
+    found_stylist
+  end
+
 define_method(:update) do |attributes|
   @name = attributes.fetch(:name)
   @id = self.id()
@@ -34,9 +44,20 @@ define_method(:update) do |attributes|
 end
 
 define_method(:delete) do
-  DB.exec("DELETE FROM stylists WHERE id = '#{self.id()}'; ")
+  DB.exec("DELETE FROM clients WHERE id = #{self.id()}; ")
+  DB.exec("DELETE FROM stylists WHERE id = #{self.id()}; ")
 end
 
-
+define_method(:clients) do
+  stylist_clients = []
+  clients = DB.exec("SELECT * FROM clients WHERE stylist_id = #{self.id()};")
+  clients.each() do |client|
+    name = client.fetch('name')
+    stylist_id = client.fetch('stylist_id').to_i
+    id = client.fetch('id').to_i
+    stylist_clients.push(Client.new({:name => name, :stylist_id => stylist_id, :id => id}))
+  end
+  stylist_clients
+end
 
 end

@@ -2,6 +2,12 @@ require('spec_helper')
 
 describe(Client) do
 
+  describe('.all') do
+    it('will return an empty array') do
+      expect(Client.all()).to(eq([]))
+    end
+  end
+
   describe('#save') do
     it('will save the newly created object in the table') do
       test_client = Client.new({:id => nil, :name => 'Getro', :stylist_id => 1})
@@ -17,9 +23,10 @@ describe(Client) do
     end
   end
 
-  describe('.all') do
-    it('will return an empty array') do
-      expect(Client.all()).to(eq([]))
+  describe("#list_id") do
+    it('lets you read the list ID out') do
+      test_client = Client.new({:name => "bosh", :stylist_id => 1, :id => nil})
+      expect(test_client.stylist_id()).to(eq(1))
     end
   end
 
@@ -41,6 +48,7 @@ describe(Client) do
       expect(Client.all()).to(eq([test_client2]))
     end
   end
+
 
 
 end
