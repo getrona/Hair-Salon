@@ -1,0 +1,36 @@
+<h1> <%= @client.name()%></h1>
+
+  <div class="col-md-3" id="righto">
+    <% if @client.clients.any?() %>
+    <h5>The List of Clients that are assigned to <%= @stylist.name()%> :</h5>
+    <ul>
+      <% @stylist.clients().each() do |client| %>
+      <li><%= client.name() %></a></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <h5>There are no clients assigned to this Stylist yet.</h5>
+    <br>
+    <% end %>
+  </div>
+
+
+  <form action="/stylist/<%=@stylist.id()%>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <label for="name">Rename your Stylist:</label>
+    <input id="name" type="text" name="name">
+    <button type="submit" class="btn">Update</button>
+  </form>
+
+  <br>
+  <br>
+  <br>
+
+  <form action="/stylist/<%=@stylist.id()%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit">Delete Stylist</button>
+  </form>
+  <br>
+  <br>
+  <br>
+  <button type="sumit" class="btn"><a href="/">Home</a></button>

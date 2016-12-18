@@ -34,9 +34,6 @@
 
 <br>
 
-
-
-
 <form action="/stylist/<%=@stylist.id()%>" method="post">
   <input type="hidden" name="_method" value="patch">
   <label for="name">Rename your Stylist:</label>
@@ -44,8 +41,15 @@
   <button type="submit" class="btn">Update</button>
 </form>
 
+<br>
+<br>
+<br>
+
 <form action="/stylist/<%=@stylist.id()%>" method="post">
   <input type="hidden" name="_method" value="delete">
   <button type="submit">Delete Stylist</button>
 </form>
+<br>
+<br>
+<br>
 <button type="sumit" class="btn"><a href="/">Home</a></button>

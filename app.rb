@@ -28,9 +28,10 @@ get('/stylist/:id') do
   erb(:stylist)
 end
 
-# get('/client/:id') do
-#
-# end
+get('/client/:id') do
+  @client = Client.find(params.fetch("id").to_i())
+
+end
 
 # get('/stylist/:id') do
 #   @stylist = Stylist.find(params.fetch("id").to_i())
