@@ -5,7 +5,7 @@
     <h5>The List of Clients that are assigned to <%= @stylist.name()%> :</h5>
     <ul>
       <% @stylist.clients().each() do |client| %>
-      <li><%= client.name() %></a></li>
+      <li> <a href="/client/<%=client.id()%>"> <%= client.name() %></a></li>
       <% end %>
     </ul>
     <% else %>

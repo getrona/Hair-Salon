@@ -5,7 +5,7 @@ require('./lib/client')
 require('./lib/stylist')
 require('pg')
 
-DB = PG.connect({:dbname => 'hair_salon_test'})
+DB = PG.connect({:dbname => 'hair_salon'})
 
 get('/') do
   @all_stylists = Stylist.all()
@@ -30,13 +30,15 @@ end
 
 get('/client/:id') do
   @client = Client.find(params.fetch("id").to_i())
-
+  erb(:client)
 end
 
-# get('/stylist/:id') do
-#   @stylist = Stylist.find(params.fetch("id").to_i())
-#   erb(:stylist)
-# end
+patch('/client/:id') do
+  name = params.fetch('name')
+  @client = Client.find(params.fetch("id").to_i())
+  @client.update({:name => name})
+  redirect "/client/#{@client.id()}"
+end
 
 patch('/stylist/:id') do
   name = params.fetch('name')
@@ -57,5 +59,13 @@ delete("/stylist/:id") do
   @stylist.delete()
   @all_stylists = Stylist.all()
   @all_clients = Client.all()
-  erb(:index)
+  redirect "/"
+end
+
+delete("/client/:id") do
+  @client = Client.find(params.fetch("id").to_i())
+  @client.delete()
+  @all_stylists = Stylist.all()
+  @all_clients = Client.all()
+  redirect "/"
 end

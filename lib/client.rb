@@ -36,7 +36,7 @@ class Client
   define_method(:update) do |attributes|
     @name = attributes.fetch(:name)
     @id = self.id()
-    DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id= #{@id};")
+    DB.exec("UPDATE clients SET name = '#{@name}' WHERE id= #{@id};")
   end
 
   define_singleton_method(:find) do |id|
